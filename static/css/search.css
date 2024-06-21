@@ -1,0 +1,24 @@
+/* static/css/search.css */
+
+
+
+.card {
+    /* Ensure cards have a fixed height to keep them uniform */
+    height: 100%;
+}
+
+.card-img-top {
+    /* Ensure all images fit within the card uniformly */
+    object-fit: cover;
+    height: 200px; /* Adjust as needed for your design */
+}
+
+.card-title {
+    /* Limit title to a fixed number of lines */
+    min-height: 36px; /* Example height, adjust based on your design */
+}
+
+.card-text {
+    /* Limit description text to a fixed number of lines */
+    font-size: 0.9rem; /* Example height, adjust based on your design */
+}

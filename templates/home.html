@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home{% endblock %}
+
+{% block styles %}
+{{ block.super }}
+<style>
+    /* Add any custom styles here */
+    .product-category-container {
+        font-family: Arial, sans-serif;
+        padding-top: 20px;
+    }
+
+    .card-title {
+        font-size: 1.2rem;
+    }
+    .card-text {
+        font-size: 0.9rem;
+    }
+    .card-img-top {
+        object-fit: cover;  /* Ensures entire image is displayed within card */
+        height: 200px; /* Optional: Set a fixed height for consistency */
+    }
+
+    /* Responsive adjustments for mobile screens */
+    @media screen and (max-width: 991px) {
+        .card {
+            width: 100%; /* Ensures cards take full width on medium screens */
+        }
+    }
+    @media screen and (max-width: 767px) {
+        .row-cols-sm-2 .col {
+            flex: 0 0 100%; /* Ensures 2 columns per row on small screens */
+        }
+    }
+</style>
+{% endblock %}
+
+{% block body %}
+
+<div class="container py-5 product-category-container">
+    <h1 class="h2 text-center mb-4">New Arrivals {{ category }}</h1>
+    <div class="row row-cols-1 row-cols-md-4 row-cols-sm-2 g-4">
+        {% if new_products %}
+            {% for product in new_products %}
+            <div class="col mb-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="{{ product.featured_image.url }}" class="card-img-top" alt="Product Image">
+                    <div class="card-body">
+                        <a class="text-decoration-none text-dark" href="{% url 'single_product' product.product_slug %}">
+                            <h5 class="card-title">{{ product.product | truncatechars:18 }}</h5>
+                        </a>
+                        <p class="card-text">{{ product.product_description | truncatechars:50 }}</p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-muted">${{ product.price }}</small>
+                            <a href="#" class="btn btn-sm btn-light border">Add to Cart</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %} 
+        {% endif %}
+    </div>
+
+    <!-- Static Pagination -->
+     {% if new_products.has_other_pages %}
+    <div class="d-flex justify-content-center mt-4">
+        <nav aria-label="Product pagination">
+            <ul class="pagination">
+              {% if new_products.has_previous %}
+                <li class="page-item"><a class="page-link text-dark" href="?page={{new_products.previous_page_number}}">Previous</a></li>
+              {% endif %}
+              {% for i in new_products.paginator.page_range %}
+                {% if new_products.number == i %}
+                  <li class="page-item"><a class="page-link bg-dark" href="#">{{i}}</a></li>
+                {% else %}
+                  <li class="page-item"><a class="page-link text-dark" href="?page={{i}}">{{i}}</a></li>
+                {% endif %}
+              {% endfor %}
+              {% if new_products.has_next %}
+                <li class="page-item"><a class="page-link text-dark" href="?page={{ new_products.next_page_number }}">Next</a></li>
+              {% endif %}
+            </ul>
+        </nav>
+    </div>
+    {% endif %}
+    <!-- End Static Pagination -->
+
+</div>
+
+{% endblock %}

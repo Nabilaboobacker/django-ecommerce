@@ -1,0 +1,43 @@
+/* Add any custom styles here */
+/* Example of applying styles to a specific container */
+.product-category-container {
+    font-family: Arial, sans-serif;
+    padding-top: 20px;
+  }
+  
+  
+  .card-title {
+    font-size: 1.2rem;
+  }
+  .card-text {
+    font-size: 0.9rem;
+  }
+  .card-img-top {
+    object-fit: cover;  /* Ensures entire image is displayed within card */
+    height: 200px; /* Optional: Set a fixed height for consistency (might add padding) */
+  }
+
+  /* Responsive adjustments for mobile screens */
+  @media screen and (max-width: 991px) {
+    .card {
+      width: 100%; /* Ensures cards take full width on medium screens */
+    }
+  }
+  @media screen and (max-width: 767px) {
+    .row-cols-sm-2 .col {
+      flex: 0 0 100%; /* Ensures 2 columns per row on small screens */
+    }
+  }
+
+/* Custom styles for the product cards */
+.card-title {
+    font-size: 1.2rem; /* Adjust as needed */
+    margin-bottom: 0.5rem; /* Optional: Adjust spacing between title and description */
+    }
+    .card-text {
+    font-size: 0.9rem; /* Adjust as needed */
+    color: #555; /* Optional: Adjust text color */
+    }
+    .text-muted {
+    font-size: 0.8rem; /* Adjust as needed */
+    }

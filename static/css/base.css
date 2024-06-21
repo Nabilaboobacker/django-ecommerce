@@ -1,0 +1,32 @@
+/* Base styles for all navbars */
+.custom-navbar .navbar-brand {
+    font-size: 1.5rem; /* Adjust font size as needed */
+}
+.custom-navbar .navbar-nav.ml-auto {
+    justify-content: flex-end;
+}
+.custom-navbar .navbar .form-inline {
+    width: 100%; /* Full width for the form */
+    display: flex;
+    justify-content: center; /* Center items horizontally */
+}
+.custom-navbar .navbar .form-inline .input-group {
+    max-width: 400px; /* Limit maximum width for larger screens */
+    width: 100%; /* Full width for input group */
+    margin: 0 auto; /* Center the input group */
+}
+@media (min-width: 768px) {
+    .custom-navbar .navbar .form-inline {
+        justify-content: flex-start; /* Align left on larger screens */
+    }
+}
+
+/* Secondary Navbar styles */
+.secondary-navbar {
+    background-color: #f8f9fa; /* Light background color */
+    border-top: 1px solid #dee2e6; /* Border to separate from main navbar */
+}
+.secondary-navbar .nav-link {
+    color: #495057; /* Text color */
+    padding: 0.5rem 1rem; /* Adjust padding as needed */
+}

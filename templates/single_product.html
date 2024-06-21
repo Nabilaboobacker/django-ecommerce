@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}{{ product.product }}{% endblock %}
+{% block styles %}
+{{ block.super }}
+<style>
+    /* Custom styles for product details */
+    .product-image {
+        height: 500px; /* Increased height for the product image */
+        object-fit: cover; /* Ensure the image covers the container */
+        border: 1px solid #ddd; /* Add a minimal border */
+        border-radius: 5px; /* Rounded corners */
+    }
+
+    /* Adjustments for the quantity input */
+    #quantity {
+        width: 105px; /* Adjust width as needed */
+        padding: 10px; /* Add padding for better appearance */
+        border: 1px solid #ccc; /* Add a border */
+        border-radius: 4px; /* Rounded corners */
+        font-size: 15px; /* Increase font size for better visibility */
+    }
+</style>
+{% endblock %}
+{% block body %}
+  <div class="mx-auto card mb-3 mt-5" style="max-width: 1000px;">
+    <div class="row no-gutters">
+      <div class="col-md-4">
+        <img src="{{ product.featured_image.url }}" class="card-img product-image" alt="Product Image">
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h4 class="card-title">{{ product.product }}</h4>
+          <p class="card-text">{{ product.product_description }}</p>
+          <h6>Price: ${{ product.price }}</h6>
+          <hr>
+          {% if product.product_quantity >= 1 %}
+          {% if not in_cart %}
+            <a href="{% url 'add_cart' product.id %}" type="submit" class="btn btn-light border">Add to Cart</a>
+          {% else %}
+            <button disabled class="btn btn-success border">Added to Cart</button>
+            <a href="{% url 'cart' %}"  class="btn btn-light border">View Cart</a>
+          {% endif %}
+          {% else %}
+          <p class="card-text text-danger">SOLD OUT</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+{% endblock %}

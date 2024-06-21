@@ -1,0 +1,72 @@
+/* register.css */
+
+.custom-register-form {
+    
+    width: 100%;
+
+    max-width: 420px; /* Increased max-width for a slightly wider form */
+    padding: 25px;
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box; /* Include padding and border in width calculation */
+    margin: 50px auto;   
+    /* Center the form horizontally with 50px margin from top */
+}
+
+.custom-register-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.custom-register-form .form-group {
+    margin-bottom: 20px;
+}
+
+.custom-register-form .form-group label {
+    font-weight: 600;
+}
+
+.custom-register-form .form-control {
+    height: 40px;
+    font-size: 14px;
+    border: 1px solid #ced4da;
+    border-radius: 3px;
+    padding: 8px;
+    width: 100%;
+}
+
+.custom-register-form .btn-register {
+    margin: 0 auto;
+    width: 100%;
+    height: 40px;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.custom-register-form .btn-register:hover {
+    background-color: #0056b3;
+}
+
+
+.login-link {
+    text-align: center;
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.login-link a {
+    color: #007bff;
+    text-decoration: none;
+}
+
+.login-link a:hover {
+    text-decoration: underline;
+}

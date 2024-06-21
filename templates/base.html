@@ -1,0 +1,88 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    {% block styles %}
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    {% endblock %}
+</head>
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-light bg-light custom-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="{% url 'home' %}">YourBrand</a>
+        
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'cart' %}">Cart</a>
+                </li>
+            </ul>
+            
+            <form method="POST" action="{% url 'search' %}" class="form-inline my-2 my-lg-0">
+                {% csrf_token %}
+                <div class="input-group">
+                    <input class="form-control" name="search_key" type="search" placeholder="Search" aria-label="Search">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-primary" type="submit"><i class="fa fa-search"></i></button>
+                    </div>
+                </div>
+            </form>
+            
+            <ul class="navbar-nav ml-auto">
+                {% if not user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login_user' %}">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'register_user' %}">Register</a>
+                </li>
+                {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'logout' %}">Logout</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link disabled">{{ user }}</a>
+                </li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- Secondary Navbar for Categories -->
+<nav class="navbar navbar-expand-lg navbar-light secondary-navbar">
+    <div class="container">
+        <!-- Category links -->
+        <ul class="navbar-nav mx-auto">
+            {% for category in categories %}
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'category_products' category.id %}">{{ category.category }}</a>
+            </li>
+            {% endfor %}
+
+
+            <!-- Add more categories as needed -->
+        </ul>
+    </div>
+</nav>
+
+<!-- Your page content goes here -->
+{% block body %}
+{% endblock %}
+<!-- Bootstrap JS and other scripts -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+</body>
+</html>
